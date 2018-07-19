@@ -63,6 +63,7 @@ void WireMaster::begin(void)
   i2c_init();
 }
 
+/*  // Disable slave mode operation
 void WireMaster::begin(uint8_t address)
 {
   //twi_setAddress(address);
@@ -75,6 +76,7 @@ void WireMaster::begin(int address)
 {
   begin((uint8_t)address);
 }
+*/
 
 void WireMaster::setClock(uint32_t frequency)
 {

@@ -47,8 +47,8 @@ class WireMaster : public Stream
   public:
     WireMaster();
     void begin();
-    void begin(uint8_t);
-    void begin(int);
+    //void begin(uint8_t);      // Disable slave mode operation entirely
+    //void begin(int);
     void setClock(uint32_t);
     void beginTransmission(uint8_t);
     void beginTransmission(int);
