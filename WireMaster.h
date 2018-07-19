@@ -27,7 +27,7 @@
 
 #define BUFFER_LENGTH 32
 
-class TwoWire : public Stream
+class WireMaster : public Stream
 {
   private:
     static uint8_t rxBuffer[];
@@ -45,7 +45,7 @@ class TwoWire : public Stream
     static void onRequestService(void);
     static void onReceiveService(uint8_t*, int);
   public:
-    TwoWire();
+    WireMaster();
     void begin();
     void begin(uint8_t);
     void begin(int);
@@ -74,6 +74,6 @@ class TwoWire : public Stream
     using Print::write;
 };
 
-extern TwoWire Wire;
+extern WireMaster Wire;
 
 #endif
