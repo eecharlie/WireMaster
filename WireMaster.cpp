@@ -78,10 +78,15 @@ void WireMaster::begin(int address)
 }
 */
 
+/*  
+ * Disabled, to throw error if called. i2cmaster picks
+ * clock speed based on CPU clock, implemented with its 
+ * own delay loops.
 void WireMaster::setClock(uint32_t frequency)
 {
   TWBR = ((F_CPU / frequency) - 16) / 2;
 }
+*/
 
 uint8_t WireMaster::requestFrom(uint8_t address, uint8_t quantity, uint8_t sendStop)
 {
@@ -91,6 +96,11 @@ uint8_t WireMaster::requestFrom(uint8_t address, uint8_t quantity, uint8_t sendS
   }
   // perform blocking read into buffer
   uint8_t read = 0; //twi_readFrom(address, rxBuffer, quantity, sendStop);
+
+  // TODO full logic loop for I2C read, where read = # bytes read, 0 on error
+
+
+
   // set rx buffer iterator vars
   rxBufferIndex = 0;
   rxBufferLength = read;
@@ -180,9 +190,8 @@ size_t WireMaster::write(uint8_t data)
     // update amount in buffer   
     txBufferLength = txBufferIndex;
   }else{
-  // in slave send mode
-    // reply to master
-    // TODO twi_transmit(&data, 1);
+    // return error due to failure to call beginTransmission();
+    return 0;
   }
   return 1;
 }
@@ -288,6 +297,7 @@ void WireMaster::onRequestService(void)
   user_onRequest();
 }
 
+/*
 // sets function called on slave write
 void WireMaster::onReceive( void (*function)(int) )
 {
@@ -299,6 +309,7 @@ void WireMaster::onRequest( void (*function)(void) )
 {
   user_onRequest = function;
 }
+*/
 
 // Preinstantiate Objects //////////////////////////////////////////////////////
 

@@ -38,6 +38,7 @@
 
 ;******----- Adapt these SCA and SCL port and pin definition to your target !!
 ;
+; TODO: Pull these from Arduino defaults, but allow to be pre-defined
 #define SDA             4           // SDA Port D, Pin 4   
 #define SCL             5           // SCL Port D, Pin 5
 #define SDA_PORT        PORTD       // SDA Port D
